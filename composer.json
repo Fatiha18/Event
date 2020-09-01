@@ -24,7 +24,13 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "fzaninotto/faker": "^1.9",
-        "symfony/maker-bundle": "^1.21"
+        "symfony/debug-bundle": "^4.4",
+        "symfony/maker-bundle": "^1.21",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/stopwatch": "^4.4",
+        "symfony/twig-bundle": "^4.4",
+        "symfony/var-dumper": "^4.4",
+        "symfony/web-profiler-bundle": "^4.4"
     },
     "config": {
         "preferred-install": {
