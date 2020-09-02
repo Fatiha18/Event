@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Profil de {{ app.user.pseudo }}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <h1 class="title">Mon profil</h1>
+
+        {% include 'includes/flash.html.twig' %}
+
+        <div class="columns">
+            <div class="column">
+                <h3 class="subtitle">Mes infos</h3>
+
+                {{ form_start(profile_form) }}
+
+                {{ form_row(profile_form.email, {
+                    label: 'Adresse email:'
+                }) }}
+
+                {{ form_row(profile_form.pseudo, {
+                    label: 'Pseudo:'
+                }) }}
+
+                <button type="submit" class="button is-info is-fullwidth">
+                    Mettre à jour
+                </button>
+
+                {{ form_end(profile_form) }}
+           </div>
+
+            <div class="column">
+                <h3 class="subtitle">Mot de passe du compte</h3>
+
+                {{ form_start(password_form) }}
+
+                {{ form_row(password_form.password.first, {
+                    label: 'Nouveau mot de passe:'
+                }) }}
+
+                {{ form_row(password_form.password.second, {
+                    label: 'Confirmer le nouveau mot de passe:'
+                }) }}
+
+                <button type="submit" class="button is-info is-fullwidth">
+                    Mettre à jour
+                </button>
+
+                {{ form_end(password_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}        
