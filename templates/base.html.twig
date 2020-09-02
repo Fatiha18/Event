@@ -31,6 +31,13 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path('participate')}}">Mes participation</a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#"><i class="far fa-calendar-alt"></i></a>
+        </li>
+       
+         
+        
+        
       {% else %}
         
         <li class="nav-item">
@@ -47,15 +54,15 @@
     <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-              {% if is_granted("ROLE_USER") %}
-                 <a class="button is-primary is-small" href="{{ path('account_profile') }}">
+            {% if is_granted("ROLE_USER") %}
+              <a class="button is-primary is-small" href="{{ path('account_profile') }}">
                     <span class="icon"><i class="fas fa-user-circle"></i></span>
                     <strong>{{ app.user.pseudo}}</strong>
-                  </a>
-                  <a class="button is-light is-small" href="{{ path('app_logout') }}">
+              </a>
+              <a class="button is-light is-small" href="{{ path('app_logout') }}">
                       Déconnexion
-                  </a>
-              {% endif %}        
+              </a>
+            {% endif %}        
         </div>
     </div>
 
