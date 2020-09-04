@@ -2,11 +2,39 @@
 {% extends "base.html.twig"%}
 
 {% block body %} 
- <div class="section">
-<h1>Accueil</h1>
+<div class="section">
  {% include 'includes/flash.html.twig' %}
+<h1>Les evenement en cours</h1>
+</div>
 
- </div>
+ <div class="section">
+        
+
+        <div class="columns is-multiline">
+            {% for events in events_list %}
+                <div class="column is-one-third">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <a href="{{ path('event_page', {id: events.id}) }}" class="has-text-primary">
+                                            <strong>{{ events.nom }}</strong>
+                                        </a>
+                                        <br>
+                                        <small>{{ events.Lieu }}</small><br>
+                                        {{events.Description|slice(0, 25) }}<br>
+                                        {{ events.Date|date('d/m/Y') }}
+                                    </p>
+                                    <button type="button" class="btn btn-info">Participer</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
  
 
 {% endblock %}

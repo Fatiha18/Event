@@ -1,0 +1,18 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Label: {{ events.nom }}
+{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <h2 class="title">Crée par : </h2>
+
+        <strong>L'évenement:</strong> <span class="text-secondary">{{ events.nom }} </span></h3>
+        <h3 class="subtitle"><strong>Aura lieu à: </strong><span class="text-secondary">{{ events.Lieu }}</h3></span>
+        <h3 class="subtitle"><strong>Description: </strong><span class="text-secondary">{{ events.Description }}</span></h3>
+        <h3 class="subtitle"><strong>La date d'évenement:</strong><span class="text-secondary"> {{ events.Date|date('d/m/Y') }}</span></h3>
+       
+    </div>
+{% endblock %}

@@ -22,7 +22,7 @@ class UserFixtures extends BaseFixtures
     {
 
         // Utilisateurs
-        $this->createMany(20, function (int $num) {
+        $this->createMany(20, 'auteur',function (int $num) {
             $user = new User();
             $password = $this->encoder->encodePassword($user, 'user' . $num);
 
@@ -30,6 +30,7 @@ class UserFixtures extends BaseFixtures
                 ->setEmail('user' . $num . '@events.fr')
                 ->setPassword($password)
                 ->setPseudo( $this->faker->userName())
+                ->renewToken()
 
             ;
         });

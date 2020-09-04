@@ -49,7 +49,7 @@ abstract class BaseFixtures extends Fixture
      * @param callable $factory fonction qui génére 1 entité
      */
 
-     protected function createMany(int $count, callable $factory)
+     protected function createMany(int $count, string $groupName, callable $factory)
     {
          for($i = 0; $i < $count; $i++){
              // On exécute $factory qui doit retourner l'entité générée
@@ -62,8 +62,48 @@ abstract class BaseFixtures extends Fixture
             }
              //On prépare à l'enresgistrement de l'entité
              $this->manager->persist($entity);
+             
+               // Enregistre une référence à l'entité
+               $reference = sprintf('%s_%d', $groupName, $i);
+               $this->addReference($reference, $entity);
 
              
         } 
     } 
+
+
+     /**
+      * Récupérer 1 entité par son nom de groupe de référence
+      */
+
+      protected function getRandomRefence(string $groupName)
+      {
+        // vérifier si on a déja enregistré les références du groupe demandé 
+        if(!isset($this->references[$groupName])){
+
+            //si,non on va rechercher les références
+
+             $this->references[$groupName] = [];
+
+
+
+             // on parcourt la liste de toutes les réferences
+
+             foreach ($this->referenceRepository->getReferences() as $key => $ref){
+                 //
+                 //
+                 if(strpos($key, $groupName) === 0){
+                     $this->references[$groupName][] = $key;
+                 }
+             }
+
+        }
+
+        if ($this->references[$groupName] === []){
+            throw new \Exception(sprintf('Aucune référence trouvée pour le groupe "%s"', $groupName));
+        }
+        // Retourner une entité 
+        $randomReference = $this->faker->randomElement($this->references[$groupName]);
+        return $this->getReference($randomReference);
+      }
 }
